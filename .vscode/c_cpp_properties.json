@@ -46,12 +46,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceRoot}",
-                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include",
-                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++",
-                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits",
-                "C:/mingw64/include",
-                "C:/mingw64/x86_64-w64-mingw32/include",
-                "C:/mingw64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"
+                "C:/boost_1_69_0"
             ],
             "defines": [
                 "_DEBUG",
@@ -61,8 +56,7 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "${workspaceRoot}",
-                    "c:/mingw64"
+                    "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -71,5 +65,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 3
+    "version": 4
 }

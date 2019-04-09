@@ -1,4 +1,4 @@
-//ÓÅ»¯×Ônewsort.cpp
+//ä¼˜åŒ–è‡ªnewsort.cpp
 #include<iostream>
 #include<cmath>
 #include<ctime>
@@ -10,7 +10,7 @@ const int maximum=100000000;
 
 int randmin=0;
 int randmax=10000000;
-int mark=0;//ÓÃÓÚ¼òÒ×ÄÚ´æ¹ÜÀí
+int mark=0;//ç”¨äºç®€æ˜“å†…å­˜ç®¡ç†
 
 
 int partition(int* A,int p,int r);
@@ -25,7 +25,7 @@ boost::variate_generator<boost::mt19937&, boost::uniform_int<> > die(gen,dist);
 
 
 
-int partition(int* A,int p,int r){//´ÓÊôÓÚquick_sort
+int partition(int* A,int p,int r){//ä»å±äºquick_sort
     int x=A[r];
     int i=p-1;
     int temp;
@@ -42,14 +42,14 @@ int partition(int* A,int p,int r){//´ÓÊôÓÚquick_sort
     A[r]=temp;
     return i+1;
 }
-void quick_sort(int* A,int p,int r){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¿ìËÙÅÅĞò(´ÓĞ¡µ½´ó)
+void quick_sort(int* A,int p,int r){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨å¿«é€Ÿæ’åº(ä»å°åˆ°å¤§)
     if(p<r){
         int q=partition(A,p,r);
         quick_sort(A,p,q-1);
         quick_sort(A,q+1,r);
     }
 }
-void insertion_sort(int* A,int p,int r){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ²åÈëÅÅĞò(´ÓĞ¡µ½´ó)
+void insertion_sort(int* A,int p,int r){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨æ’å…¥æ’åº(ä»å°åˆ°å¤§)
     int temp;
     for(int q=p+1;q<=r;q++){
         temp=A[q];
@@ -60,7 +60,7 @@ void insertion_sort(int* A,int p,int r){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ²åÈëÅÅĞò(´ÓĞ¡µ½´ó)
         A[i+1]=temp;
     }
 }
-void quick_sort_2(int* A,int p,int r,int t=10){//¸Ä½øµÄquick_sort,ÒÀÀµÓÚinsertion_sort
+void quick_sort_2(int* A,int p,int r,int t=10){//æ”¹è¿›çš„quick_sort,ä¾èµ–äºinsertion_sort
     if(p<r-t){
         int q=partition(A,p,r);
         quick_sort_2(A,p,q-1,t);
@@ -69,7 +69,7 @@ void quick_sort_2(int* A,int p,int r,int t=10){//¸Ä½øµÄquick_sort,ÒÀÀµÓÚinsertio
         insertion_sort(A,p,r);
     }
 }
-void merge(int* A,int p,int q,int r){//´ÓÊôÓÚmerge_sort
+void merge(int* A,int p,int q,int r){//ä»å±äºmerge_sort
     int n1=q-p+1;
     int n2=r-q;
     int* L=new int[n1+1];
@@ -94,7 +94,7 @@ void merge(int* A,int p,int q,int r){//´ÓÊôÓÚmerge_sort
     delete L;
     delete R;
 }
-void merge_sort(int* A,int p,int r){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó)
+void merge_sort(int* A,int p,int r){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨å½’å¹¶æ’åº(ä»å°åˆ°å¤§)
     if(p<r){
         int q=(p+r)/2;
         merge_sort(A,p,q);
@@ -102,15 +102,15 @@ void merge_sort(int* A,int p,int r){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó)
         merge(A,p,q,r);
     }
 }
-//¹é²¢ÅÅĞòµÄÓÅ»¯ĞèÒªÓÃµ½ÄÚ´æ¹ÜÀí
-int* getintarray(int* B,int size){//¼òÒ×ÄÚ´æ¹ÜÀí,ÉêÇë
+//å½’å¹¶æ’åºçš„ä¼˜åŒ–éœ€è¦ç”¨åˆ°å†…å­˜ç®¡ç†
+int* getintarray(int* B,int size){//ç®€æ˜“å†…å­˜ç®¡ç†,ç”³è¯·
     mark+=size;
     return B+mark-size;
 }
-void deleteintarray(int* B,int size){//¼òÒ×ÄÚ´æ¹ÜÀí,ÊÍ·Å
+void deleteintarray(int* B,int size){//ç®€æ˜“å†…å­˜ç®¡ç†,é‡Šæ”¾
     mark-=size;
 }
-void merge_memoryselfcontrol(int* A,int p,int q,int r,int* B){//´ÓÊôÓÚmerge_sort_memoryselfcontrol_1,ÓÃµ½ÄÚ´æ¹ÜÀí
+void merge_memoryselfcontrol(int* A,int p,int q,int r,int* B){//ä»å±äºmerge_sort_memoryselfcontrol_1,ç”¨åˆ°å†…å­˜ç®¡ç†
     int n1=q-p+1;
     int n2=r-q;
     int* L=getintarray(B,n1+1);
@@ -136,7 +136,7 @@ void merge_memoryselfcontrol(int* A,int p,int q,int r,int* B){//´ÓÊôÓÚmerge_sort
     }
     deleteintarray(B,n1+n2+2);
 }
-void merge_sort_memoryselfcontrol_1(int* A,int p,int r,int* B){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó),ÓÃµ½ÄÚ´æ¹ÜÀí,µ«Ã»ÓĞÓÅ»¯µİ¹é
+void merge_sort_memoryselfcontrol_1(int* A,int p,int r,int* B){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨å½’å¹¶æ’åº(ä»å°åˆ°å¤§),ç”¨åˆ°å†…å­˜ç®¡ç†,ä½†æ²¡æœ‰ä¼˜åŒ–é€’å½’
     if(p<r){
         int q=(p+r)/2;
         merge_sort_memoryselfcontrol_1(A,p,q,B);
@@ -144,7 +144,7 @@ void merge_sort_memoryselfcontrol_1(int* A,int p,int r,int* B){//½«A[p]ÖÁA[r]µÄÊ
         merge_memoryselfcontrol(A,p,q,r,B);
     }
 }
-void merge_sort_memoryselfcontrol_2(int* A,int p,int r,int* B,int t=10){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó),ÓÃµ½ÄÚ´æ¹ÜÀí,ÓÃµ½µİ¹éÓÅ»¯
+void merge_sort_memoryselfcontrol_2(int* A,int p,int r,int* B,int t=10){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨å½’å¹¶æ’åº(ä»å°åˆ°å¤§),ç”¨åˆ°å†…å­˜ç®¡ç†,ç”¨åˆ°é€’å½’ä¼˜åŒ–
     if(p<r-t){
         int q=(p+r)/2;
         merge_sort_memoryselfcontrol_2(A,p,q,B,t);
@@ -154,7 +154,7 @@ void merge_sort_memoryselfcontrol_2(int* A,int p,int r,int* B,int t=10){//½«A[p]
         insertion_sort(A,p,r);
     }
 }
-void merge_sort_2(int* A,int p,int r,int t=10){//½«A[p]ÖÁA[r]µÄÊıÊ¹ÓÃ¹é²¢ÅÅĞò(´ÓĞ¡µ½´ó),ÓÃµ½ÄÚ´æ¹ÜÀí,ÓÃµ½µİ¹éÓÅ»¯
+void merge_sort_2(int* A,int p,int r,int t=10){//å°†A[p]è‡³A[r]çš„æ•°ä½¿ç”¨å½’å¹¶æ’åº(ä»å°åˆ°å¤§),ç”¨åˆ°å†…å­˜ç®¡ç†,ç”¨åˆ°é€’å½’ä¼˜åŒ–
     if(p<r-t){
         int q=(p+r)/2;
         merge_sort_2(A,p,q,t);
@@ -173,22 +173,22 @@ int main(){
     clock_t first,finish;
     
     int n;
-    cout<<"Êı×é³¤¶È:";
+    cout<<"æ•°ç»„é•¿åº¦:";
     cin>>n;
     int* A;
     A=new int[n];
-    int* B=new int[n+2];//ÓÃÓÚ¹é²¢ÅÅĞò,ÄÚ´æ¹ÜÀí
+    int* B=new int[n+2];//ç”¨äºå½’å¹¶æ’åº,å†…å­˜ç®¡ç†
     int circle;
     double average=0;
-    cout<<"²âÊÔ´ÎÊı:";
+    cout<<"æµ‹è¯•æ¬¡æ•°:";
     cin>>circle;
     ofstream fout("456.txt",ios::trunc);
 
 /*
-    //Ñ°ÕÒµİ¹éÅÅĞòºÍ²åÈëÅÅĞòµÄ²î¾à(Õë¶ÔĞ¡Êı×é)
+    //å¯»æ‰¾é€’å½’æ’åºå’Œæ’å…¥æ’åºçš„å·®è·(é’ˆå¯¹å°æ•°ç»„)
     fout<<"array_length insertion_sort merge_sort_memoryselfcontrol_1 quick_sort"<<endl;
     for(int i=1;i<=n;i++){
-        cout<<"Êı×é³¤¶È:"<<i<<endl;
+        cout<<"æ•°ç»„é•¿åº¦:"<<i<<endl;
         fout<<i<<" ";
         average=0;
         for(int j=0;j<circle;j++){
@@ -233,7 +233,7 @@ int main(){
 
 /*
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -243,14 +243,14 @@ int main(){
         finish=clock();
 
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
 */
 
 
-/*Ñ°ÕÒµİ¹éÅÅĞòºÍ²åÈëÅÅĞòµÄ½áºÏµã
+/*å¯»æ‰¾é€’å½’æ’åºå’Œæ’å…¥æ’åºçš„ç»“åˆç‚¹
     for(int t=70;t>=0;t--){
         average=0;
         for(int i=1;i<=circle;i++){
@@ -263,13 +263,13 @@ int main(){
             average+=(finish-first);
         }
         average=average/circle;
-        cout<<"t="<<t<<",Æ½¾ùºÄÊ±:"<<average<<"ms"<<endl;
+        cout<<"t="<<t<<",å¹³å‡è€—æ—¶:"<<average<<"ms"<<endl;
     }
 */
 /*
     cout<<"merge_sort:"<<endl;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -277,15 +277,15 @@ int main(){
         merge_sort(A,0,n-1);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
     cout<<"---------------------------------------------------"<<endl;
     cout<<"merge_sort_memoryselfcontrol_1"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -293,10 +293,10 @@ int main(){
         merge_sort_memoryselfcontrol_1(A,0,n-1,B);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
 */
     /*
     first=clock();
@@ -313,7 +313,7 @@ int main(){
     cout<<"quick_sort:"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -321,15 +321,15 @@ int main(){
         quick_sort(A,0,n-1);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
     cout<<"---------------------------------------------------"<<endl;
     cout<<"quick_sort_2:"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -337,15 +337,15 @@ int main(){
         quick_sort_2(A,0,n-1,25);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
     cout<<"---------------------------------------------------"<<endl;
     cout<<"merge_sort:"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -353,15 +353,15 @@ int main(){
         merge_sort(A,0,n-1);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
     cout<<"---------------------------------------------------"<<endl;
     cout<<"merge_sort_2"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -369,15 +369,15 @@ int main(){
         merge_sort_2(A,0,n-1,43);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
     cout<<"---------------------------------------------------"<<endl;
     cout<<"merge_sort_memoryselfcontrol_2"<<endl;
     average=0;
     for(int i=1;i<=circle;i++){
-        cout<<"µÚ"<<i<<"´Î²âÊÔ:";
+        cout<<"ç¬¬"<<i<<"æ¬¡æµ‹è¯•:";
         for(int j=0;j<n;j++){
             A[j]=die();
         }
@@ -385,10 +385,10 @@ int main(){
         merge_sort_memoryselfcontrol_2(A,0,n-1,B,43);
         finish=clock();
         average+=(finish-first);
-        cout<<"µÚ"<<i<<"´ÎÅÅĞòÍê±Ï£¬ºÄÊ±:"<<finish-first<<"ms"<<endl;
+        cout<<"ç¬¬"<<i<<"æ¬¡æ’åºå®Œæ¯•ï¼Œè€—æ—¶:"<<finish-first<<"ms"<<endl;
     }
     average=average/circle;
-    cout<<circle<<"´ÎÆ½¾ùÓÃÊ±:"<<average<<"ms"<<endl;
+    cout<<circle<<"æ¬¡å¹³å‡ç”¨æ—¶:"<<average<<"ms"<<endl;
 
 
 
